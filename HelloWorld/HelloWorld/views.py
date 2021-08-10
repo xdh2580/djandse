@@ -7,6 +7,7 @@ from .mselenium import get_something_fome_selenium
 #     views_name = "菜鸟教程"
 #     return render(request, "runoob.html", {"p1": views_name})
 
+# add something
 
 def hello(request):
     context = {}
