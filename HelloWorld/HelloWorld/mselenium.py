@@ -54,8 +54,7 @@ def douban():
         print(i.text)
 
 
-
-def get_something_fome_selenium():
+def get_something_from_selenium():
     # return su_content
     return "something"
 
