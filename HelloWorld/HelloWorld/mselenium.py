@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
+from HelloWorld.HelloWorld import mysqlutil
 
 import tkinter
 from tkinter.messagebox import showinfo
@@ -35,10 +36,12 @@ def baidu():
     su.click()
     # browser.refresh()
     # browser.execute_script("alert('hello')")
-    browser.back()
-    browser.execute_script("alert('浏览器将在3秒后自动关闭')")
-    time.sleep(3)
-    browser.quit()
+
+
+    # browser.back()
+    # browser.execute_script("alert('浏览器将在3秒后自动关闭')")
+    # time.sleep(3)
+    # browser.quit()
 
     # root=tkinter.Tk()
 
@@ -58,7 +61,6 @@ def douban():
     browser.implicitly_wait(20)
     browser.maximize_window()  # 窗口最大化
 
-
     while True:
         pages = browser.find_element_by_class_name("v_page")
         try:
@@ -71,24 +73,25 @@ def douban():
             print("异常，未找到“下一页”，已是最后一页")
             break
 
-
     # for i in pages:
     #     print("D:i-"+i.text)
     #     if i.text == "下一页":
     #         print("D：有下一页标签")
 
 
-
 def get_something_from_selenium():
     # return su_content
     all_in_one_string = ""
     for i in movieList:
-        all_in_one_string = all_in_one_string+"\t"+i
+        all_in_one_string = all_in_one_string + "\t" + i
 
     return all_in_one_string
 
 
-douban()
+douban()  # 查找第三方网站豆瓣top250
+# baidu()
+for i in movieList:
+    mysqlutil.insert_movie(i)
 browser.execute_script("alert('浏览器将在3秒后自动关闭')")
 time.sleep(3)
 browser.quit()
