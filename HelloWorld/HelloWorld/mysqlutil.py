@@ -19,7 +19,7 @@ import pymysql
 # db.close()
 
 
-def insert_movie(name):
+def insert_movie(name, order="", score="", direct="", public_time="", time=""):
     db = pymysql.connect(
         host='localhost',
         user='root',
@@ -28,11 +28,16 @@ def insert_movie(name):
         charset='utf8',
         # autocommit=True,    # 如果插入数据，， 是否自动提交? 和conn.commit()功能一致。
     )
-
-    cursor = db.cursor()
-    sql = """insert into table1(name) values('%s') """ % name
-    print("sql:" + sql)
-    cursor.execute(sql)
-    db.commit()
-    print("插入成功")
-    db.close()
+    try:
+        cursor = db.cursor()
+        sql = """insert into movie(morder,mname,score,direct,public_time,time) values('%s','%s','%s','%s','%s','%s') """ % (int(order), name, score, direct, public_time, time)
+        print("sql:" + sql)
+        cursor.execute(sql)
+        db.commit()
+        print("插入成功")
+    except Exception as e:
+        # raise e
+        db.rollback()
+        print("插入异常，已跳过")
+    finally:
+        db.close()
