@@ -2,10 +2,6 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from HelloWorld.HelloWorld import mysqlutil
 from HelloWorld.HelloWorld import movieinfo
-
-import tkinter
-from tkinter.messagebox import showinfo
-from tkinter.ttk import Combobox
 import time
 
 # 设置selenium使用chrome的无头模式
@@ -35,20 +31,10 @@ def baidu():
     browser.set_script_timeout(5)
     kw.send_keys("selenium")
     su.click()
-    # browser.refresh()
-    # browser.execute_script("alert('hello')")
-
-    # browser.back()
-    # browser.execute_script("alert('浏览器将在3秒后自动关闭')")
-    # time.sleep(3)
-    # browser.quit()
-
-    # root=tkinter.Tk()
 
 
 # 对照页面布局，爬取页面数据
 def get_movies_info_in_current_page():
-    # a = browser.find_element_by_class_name("m-t-t")
     movie = browser.find_elements_by_class_name("recommend-movie")
     for m in movie:
         order = m.find_element_by_class_name("m-t-n").text  # 排名
@@ -107,5 +93,3 @@ for i in movieList:
     mysqlutil.insert_movie(name=i.movie_name, order=i.movie_order, score=i.movie_score,
                            direct=i.movie_direct, public_time=i.movie_public_time, time=i.movie_time)
 
-# print("------------------------------------")
-# print(get_something_from_selenium())
