@@ -1,5 +1,5 @@
 import pymysql
-
+from django.utils import html
 
 def insert_movie(name, order="", score="", direct="", public_time="", time=""):
     db = pymysql.connect(
@@ -47,4 +47,4 @@ def get_movies_info_from_db():
         raise e
     finally:
         db.close()
-    return movie_info_str_for_show
+    return html.format_html(movie_info_str_for_show)

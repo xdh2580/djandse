@@ -13,7 +13,7 @@ movieList = []  # 电影元组，其中append的每一个元素为一个Movie对
 browser = webdriver.Chrome(
     r'C:\Users\XDH\PycharmProjects\seleniumfirst\venv\Scripts\chromedriver.exe',
     options=chrome_options)  # 获取chrome浏览器的驱动，并启动Chrome浏览器
-
+browser.quit()  # 清除后台进程，因为配合django时，每改动一次代码，就会加载一次项目文件，就会新建一个webdriver
 
 def baidu():
     # 打开百度
@@ -83,7 +83,10 @@ def get_something_from_selenium():
     return all_in_one_string
 
 
-if __name__=='__main__':
+if __name__ == '__main__':
+    browser = webdriver.Chrome(
+        r'C:\Users\XDH\PycharmProjects\seleniumfirst\venv\Scripts\chromedriver.exe',
+        options=chrome_options)  # 获取chrome浏览器的驱动，并启动Chrome浏览器
     douban()  # 查找第三方网站豆瓣top250
     # baidu()
     browser.execute_script("alert('浏览器将在3秒后自动关闭')")

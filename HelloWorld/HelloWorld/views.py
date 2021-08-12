@@ -21,6 +21,6 @@ def movie(request):
     context = {}
     # context['a1'] = 'Hello World again!'
     # context['p1'] = '豆瓣top电影信息：'
-    all_info = html.format_html(get_movies_info_from_db())
-    context['info'] = all_info
+    # all_info = html.format_html(get_movies_info_from_db())
+    context['info'] = get_movies_info_from_db()
     return render(request, 'movie.html', context)
