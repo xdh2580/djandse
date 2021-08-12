@@ -20,6 +20,7 @@ from django.urls import path
 urlpatterns = [
     url(r'^$', views.hello),
     path('runoob/', views.runoob),
+    path('movie/', views.movie),
 ]
 # from django.conf.urls import url
 # from django.urls import path

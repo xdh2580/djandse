@@ -1,7 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-from HelloWorld.HelloWorld import mysqlutil
-from HelloWorld.HelloWorld import movieinfo
+from . import mysqlutil
+from . import movieinfo
 import time
 
 # 设置selenium使用chrome的无头模式
@@ -83,13 +83,14 @@ def get_something_from_selenium():
     return all_in_one_string
 
 
-douban()  # 查找第三方网站豆瓣top250
-# baidu()
-browser.execute_script("alert('浏览器将在3秒后自动关闭')")
-time.sleep(3)
-browser.quit()
-for i in movieList:
-    # print(i.movie_name+i.movie_order+i.movie_score+i.movie_direct+i.movie_public_time+i.movie_time)
-    mysqlutil.insert_movie(name=i.movie_name, order=i.movie_order, score=i.movie_score,
-                           direct=i.movie_direct, public_time=i.movie_public_time, time=i.movie_time)
+if __name__=='__main__':
+    douban()  # 查找第三方网站豆瓣top250
+    # baidu()
+    browser.execute_script("alert('浏览器将在3秒后自动关闭')")
+    time.sleep(3)
+    browser.quit()
+    for i in movieList:
+        # print(i.movie_name+i.movie_order+i.movie_score+i.movie_direct+i.movie_public_time+i.movie_time)
+        mysqlutil.insert_movie(name=i.movie_name, order=i.movie_order, score=i.movie_score,
+                               direct=i.movie_direct, public_time=i.movie_public_time, time=i.movie_time)
 
